@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -13,34 +13,38 @@ const ADD_MESSAGE = gql`
 const GET_MESSAGES = gql`
   {
     messages {
-      body
+      title
     }
   }
 `;
 
 const AddMessage = () => {
-  const [author, setAuthor] = useState();
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
+  const [author, setAuthor] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
 
   return (
     <div>
       <input
         placeholder="Author"
         name="author"
-        onChange={(e: any) => setAuthor(e.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setAuthor(e.target.value)
+        }
         value={author}
       />
       <input
         placeholder="Title"
         name="title"
-        onChange={(e: any) => setTitle(e.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setTitle(e.target.value)
+        }
         value={title}
       />
       <input
         placeholder="Body"
         name="body"
-        onChange={(e: any) => setBody(e.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setBody(e.target.value)}
         value={body}
       />
       <Mutation

@@ -9,5 +9,5 @@ type Query {
 }
 
 type Mutation {
-  addMessage(author: String!, title: String!, body: String!): Message!
+  addMessage(body: String, author: String!, title: String!): Message
 }
